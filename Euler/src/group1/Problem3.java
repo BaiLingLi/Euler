@@ -13,6 +13,40 @@ public class Problem3 {
 
     public static void main(String[] args) {
         extractMaxPrimeFactor(600851475143L);
+        getPrimes(600851475143L);
+    }
+
+    private static long getPrimes(long n) {
+        long start = System.nanoTime();
+
+        if (n % 2 == 0) {
+            while (n % 2 == 0) {
+                n = n / 2;
+            }
+            if (n == 1) {
+                n = 2;
+            }
+        }
+
+        long sqrt = (long) Math.sqrt(n);
+
+        for (long i = 3; i <= sqrt; i += 2) {
+            if (n % i == 0) {
+                while (n % i == 0) {
+                    n = n / i;
+                }
+
+                if (n == 1) {
+                    n = i;
+                    break;
+                } else {
+                    sqrt = (long) Math.sqrt(n);
+                }
+            }
+        }
+        System.out.println(n);
+        System.out.println("処理時間: " + ((double) (System.nanoTime() - start) / 1000000) + "ミリ秒");
+        return n;
     }
 
     private static void extractMaxPrimeFactor(long num) {
