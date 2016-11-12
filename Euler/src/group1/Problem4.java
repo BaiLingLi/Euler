@@ -28,7 +28,9 @@ public class Problem4 {
                 for (long j = max; j >= min; j--) {
                     loopCnt++;
                     tmp = i * j;
-                    if (isPalindrome(tmp)) {
+
+                    // 11に割れることが特徴
+                    if (tmp % 11 == 0 && isPalindrome(tmp)) {
                         // 余計な計算を避ける
                         max = i - 1;
                         min = j + 1;
